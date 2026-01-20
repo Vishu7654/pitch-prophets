@@ -104,8 +104,8 @@
 
   <!-- TELEGRAM JOIN BUTTON -->
   <a href="https://t.me/+zKuScHyPGZBiYjc1"
-     class="btn"
-     onclick="fbq('track','Subscribe');">
+     class="join-btn"
+     onclick="trackTelegram(event, this)">
      🚀 JOIN PITCH PROPHETS ON TELEGRAM
   </a>
 
@@ -121,13 +121,28 @@
   <!-- ADS SERVICE LINK -->
   <div class="footer">
     <a href="https://t.me/+CLSbSWY3-wQzNzM9"
-       class="footer-link"
-       onclick="fbq('track','Ads_Enquiry_Click');">
+       class="footer-link">
        If you want to run Meta ads for your channel, click here
     </a>
   </div>
 
 </div>
+<script>
+  let subscribeFired = false;
 
+  function trackTelegram(event, el) {
+    event.preventDefault();
+
+    if (subscribeFired) return;
+
+    subscribeFired = true;
+
+    fbq('track', 'Subscribe');
+
+    setTimeout(function () {
+      window.location.href = el.href;
+    }, 300);
+  }
+</script>
 </body>
 </html>
